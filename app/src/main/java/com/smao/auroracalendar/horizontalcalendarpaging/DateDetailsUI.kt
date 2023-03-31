@@ -25,16 +25,6 @@ fun Date.toDateDetails(): DateDetailsUI {
     )
 }
 
-//val dayOfWeek = listOf(
-//    "SUNDAY",
-//    "MONDAY",
-//    "TUESDAY",
-//    "WEDNESDAY",
-//    "THURSDAY",
-//    "FRIDAY",
-//    "SATURDAY"
-//)
-
 val monthOfYear = listOf(
     "JANUARY",
     "FEBRUARY",

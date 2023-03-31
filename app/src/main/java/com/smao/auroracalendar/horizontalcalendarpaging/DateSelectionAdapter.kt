@@ -20,6 +20,7 @@ class DateSelectionAdapter(private val onDateSelection: (DateDetailsUI) -> Unit)
         getItem(position)?.let {
             holder.bind(it)
         }
+        Log.d("PLUTON", "$position")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
@@ -66,7 +67,7 @@ private fun RecyclerView.smoothScrollToCenteredPosition(position: Int) {
             val dxToStart = super.calculateDxToMakeVisible(view, SNAP_TO_START)
             val dxToEnd = super.calculateDxToMakeVisible(view, SNAP_TO_END)
             return (dxToStart + dxToEnd) / 2
-            Log.d("PROVERKA", "DAAAAA 222")
+            Log.d("MYPROVERKA", "$position")
         }
 
     }

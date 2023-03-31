@@ -5,7 +5,6 @@ import androidx.paging.*
 import java.util.*
 
 class MainViewModel : ViewModel() {
-
     private val _selectedDate = MutableLiveData(Date().toStringFormat())
 
     val selectedDate: LiveData<String>
@@ -28,12 +27,4 @@ class MainViewModel : ViewModel() {
 
     val resetDateList: LiveData<Long>
         get() = _resetDateList
-
-    @JvmOverloads
-    fun updateCurrentSelectedDate(date: String, invalidateList: Boolean = false) {
-        if (invalidateList) {
-            _resetDateList.value = System.currentTimeMillis()
-        }
-        _selectedDate.value = date
-    }
 }

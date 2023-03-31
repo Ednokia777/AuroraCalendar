@@ -74,11 +74,8 @@ class CalendarLayoutManager(
                 var newDistance = Math.abs(childCenterX - recyclerViewCenterX)
                 if (newDistance < minDistance) {
                     minDistance = newDistance
-                    //position = recyclerView.getChildLayoutPosition(child)
                 }
             }
-            // Notify on item selection
-            //callback?.onItemSelected(position)
         }
         Log.d("PROVERKA", "Scrolled")
     }

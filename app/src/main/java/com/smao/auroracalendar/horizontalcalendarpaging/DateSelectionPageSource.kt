@@ -11,7 +11,7 @@ class DateSelectionPageSource(private val startDate: String) : PagingSource<Stri
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Date> {
         return try {
             val key = params.key ?: startDate
-            val loadSize = 30
+            val loadSize = 11
             val nextDateRange: List<Date> = addDayToDate(key.toDate()!!, loadSize - 1)
             val prevDateRange: List<Date> = removeDayToDate(key.toDate()!!, loadSize.unaryMinus())
 

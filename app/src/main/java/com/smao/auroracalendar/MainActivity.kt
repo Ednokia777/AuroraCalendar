@@ -21,9 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var mainViewModel: MainViewModel? = null
     private lateinit var layoutManager: LinearLayoutManager
-
-    //private lateinit var adapter: CarouselAdapter
-    private lateinit var snapHelper: SnapHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,8 +30,6 @@ class MainActivity : AppCompatActivity() {
             setSelectedDate(dateDetailsUI)
         }
         val rvDates = binding.recyclerView
-        //val snapHelper: SnapHelper = LinearSnapHelper()
-        //snapHelper.attachToRecyclerView(rvDates)
         rvDates.adapter = dateSelectionAdapter
 
         mainViewModel!!.dateDetailsList.observe(this) { integerPagingData ->
@@ -57,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         with(rvDates) {
             setItemViewCacheSize(4)
             layoutManager = this@MainActivity.layoutManager
-            rvDates.smoothScrollToPosition(1)
+            rvDates.smoothScrollToPosition(21)
 
             val spacing = resources.getDimensionPixelSize(R.dimen.carousel_spacing)
             addItemDecoration(LinearHorizontalSpacingDecoration(spacing))
