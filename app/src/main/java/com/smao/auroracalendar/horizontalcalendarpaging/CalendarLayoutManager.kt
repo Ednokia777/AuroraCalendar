@@ -67,17 +67,19 @@ class CalendarLayoutManager(
             // Find the closest child to the recyclerView center --> this is the selected item.
             val recyclerViewCenterX = getRecyclerViewCenterX()
             var minDistance = recyclerView.width
-            //var position = 0
+            var position = -1
             for (i in 0 until recyclerView.childCount) {
                 val child = recyclerView.getChildAt(i)
                 val childCenterX = getDecoratedLeft(child) + (getDecoratedRight(child) - getDecoratedLeft(child)) / 2
                 var newDistance = Math.abs(childCenterX - recyclerViewCenterX)
                 if (newDistance < minDistance) {
                     minDistance = newDistance
+                    position = recyclerView.getChildLayoutPosition(child)
                 }
             }
+            callback?.onItemSelected(position)
+            Log.d("PROVERKA", "Scrolled")
         }
-        Log.d("PROVERKA", "Scrolled")
     }
 
     private fun getRecyclerViewCenterX() : Int {
@@ -93,3 +95,4 @@ class CalendarLayoutManager(
         return (width / (1 - scaleDownBy)).roundToInt()
     }
 }
+

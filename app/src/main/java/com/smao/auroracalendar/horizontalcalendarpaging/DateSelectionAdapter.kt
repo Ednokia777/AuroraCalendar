@@ -10,9 +10,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import com.smao.auroracalendar.OnChangeDate
 import com.smao.auroracalendar.databinding.ItemListBinding
 
-class DateSelectionAdapter(private val onDateSelection: (DateDetailsUI) -> Unit) :
+class DateSelectionAdapter(private val onDateSelection: (DateDetailsUI) -> Unit, private val onChangeDate: OnChangeDate) :
     PagingDataAdapter<DateDetailsUI, DateSelectionAdapter.DateViewHolder>(dateDifferentiators) {
     private val newWidth = Resources.getSystem().displayMetrics.widthPixels / 3
 
@@ -34,6 +35,8 @@ class DateSelectionAdapter(private val onDateSelection: (DateDetailsUI) -> Unit)
         fun bind(dateDetailsUI: DateDetailsUI) {
             binding.dayTv.text = dateDetailsUI.day.toString()
             binding.monthTv.text = dateDetailsUI.monthName
+//          //onChangeDate.changeDate(dateDetailsUI.day.toString(), dateDetailsUI.monthName)
+            onChangeDate.changeDate(dateDetailsUI)
             itemView.setOnClickListener {
                 onDateSelection.invoke(dateDetailsUI)
                 val rv = binding.root.parent as RecyclerView?
@@ -67,9 +70,7 @@ private fun RecyclerView.smoothScrollToCenteredPosition(position: Int) {
             val dxToStart = super.calculateDxToMakeVisible(view, SNAP_TO_START)
             val dxToEnd = super.calculateDxToMakeVisible(view, SNAP_TO_END)
             return (dxToStart + dxToEnd) / 2
-            Log.d("MYPROVERKA", "$position")
         }
-
     }
     smoothScroller.targetPosition = position
     layoutManager?.startSmoothScroll(smoothScroller)
